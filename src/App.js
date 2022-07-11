@@ -23,7 +23,7 @@ const App = () => {
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const isDesktop = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const fetchPosts = async ({ pageParam = 1 }) => {
+  const fetchPhotos = async ({ pageParam = 1 }) => {
     const response = await fetch(
       `https://picsum.photos/v2/list?page=${pageParam}&limit=10`
     );
@@ -32,7 +32,7 @@ const App = () => {
   };
 
   const { data, isLoading, isError, hasNextPage, fetchNextPage } =
-    useInfiniteQuery("photos", fetchPosts, {
+    useInfiniteQuery("photos", fetchPhotos, {
       getNextPageParam: (lastPage, pages) => {
         if (lastPage.nextPage < lastPage.totalPages) return lastPage.nextPage;
         return undefined;
